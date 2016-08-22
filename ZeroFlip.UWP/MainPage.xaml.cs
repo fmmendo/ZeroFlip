@@ -25,6 +25,8 @@ namespace ZeroFlip.UWP
         public MainPage()
         {
             this.InitializeComponent();
+
+            ZeroFlip.Lib.ZeroGrid grid = new Lib.ZeroGrid();
         }
     }
 }

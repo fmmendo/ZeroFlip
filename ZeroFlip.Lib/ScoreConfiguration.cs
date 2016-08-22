@@ -49,16 +49,19 @@ namespace ZeroFlip.Lib
                 new PointsConfiguration { Points = 12, Twos = 2, Threes = 1 },
                 new PointsConfiguration { Points = 16, Twos = 4, Threes = 0 },
                 new PointsConfiguration { Points = 18, Twos = 1, Threes = 2 },
+
                 new PointsConfiguration { Points = 24, Twos = 3, Threes = 1 },
                 new PointsConfiguration { Points = 27, Twos = 0, Threes = 3 },
                 new PointsConfiguration { Points = 32, Twos = 5, Threes = 0 },
                 new PointsConfiguration { Points = 36, Twos = 2, Threes = 2 },
                 new PointsConfiguration { Points = 48, Twos = 4, Threes = 1 },
+
                 new PointsConfiguration { Points = 54, Twos = 1, Threes = 3 },
                 new PointsConfiguration { Points = 64, Twos = 6, Threes = 0 },
                 new PointsConfiguration { Points = 72, Twos = 3, Threes = 2 },
                 new PointsConfiguration { Points = 81, Twos = 0, Threes = 4 },
                 new PointsConfiguration { Points = 96, Twos = 5, Threes = 1 },
+
                 new PointsConfiguration { Points = 108, Twos = 2, Threes = 3 },
                 new PointsConfiguration { Points = 128, Twos = 7, Threes = 0 },
                 new PointsConfiguration { Points = 144, Twos = 4, Threes = 2 },
