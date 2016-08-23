@@ -112,5 +112,10 @@ namespace ZeroFlip.Lib
             for (int i = 0; i < numberOfCells; i++)
                 yield return i;
         }
+
+        public void RevealTile(int row, int column)
+        {
+            grid[row, column].Revealed = true;
+        }
     }
 }
