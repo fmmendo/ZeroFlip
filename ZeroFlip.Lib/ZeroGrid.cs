@@ -8,11 +8,17 @@ namespace ZeroFlip.Lib
 {
     public class ZeroGrid
     {
+        private const int BASE_SCORE = 1;
+
+        private int score;
         private int level;
         private int gridSize;
         private int numberOfCells;
         private Tile[,] grid;
         private Random Random = new Random();
+
+        public int Level { get { return level; } }
+        public int Score { get { return score; } }
 
         public ZeroGrid(int level = 1, int gridSize = 5)
         {
@@ -20,8 +26,7 @@ namespace ZeroFlip.Lib
             this.gridSize = gridSize;
             this.numberOfCells = gridSize * gridSize;
 
-            ResetGrid();
-            CreateGrid();
+            CreateGrid(level);
         }
 
         public IEnumerable<Tile> GetRow(int row)
@@ -67,6 +72,8 @@ namespace ZeroFlip.Lib
 
         private void CreateGrid(int level = 1)
         {
+            ResetGrid();
+
             // get the score range for current level
             var data = ScoringData.LevelMinMax.FirstOrDefault(l => l.Level == level);
             // get tile configurations for range of scores
@@ -116,6 +123,8 @@ namespace ZeroFlip.Lib
         public void RevealTile(int row, int column)
         {
             grid[row, column].Revealed = true;
+
+            score *= grid[row, column].Value;
         }
     }
 }

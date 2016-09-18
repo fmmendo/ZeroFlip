@@ -1,25 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="f8892722-e185-4be1-973f-90698aab1946" Publisher="CN=fmmendo" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="f8892722-e185-4be1-973f-90698aab1946" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  IgnorableNamespaces="uap mp">
+
+  <Identity
+    Name="c80bcbde-31f5-4f4d-9158-9f1a9c99daf2"
+    Publisher="CN=fmmen"
+    Version="1.0.0.0" />
+
+  <mp:PhoneIdentity PhoneProductId="c80bcbde-31f5-4f4d-9158-9f1a9c99daf2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
   <Properties>
     <DisplayName>ZeroFlip.UWP</DisplayName>
-    <PublisherDisplayName>$XmlEscapedPublisher$</PublisherDisplayName>
+    <PublisherDisplayName>fmmen</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
+
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
+
   <Resources>
-    <Resource Language="x-generate" />
+    <Resource Language="x-generate"/>
   </Resources>
+
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="ZeroFlip.UWP.App">
-      <uap:VisualElements DisplayName="ZeroFlip.UWP" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="ZeroFlip.UWP" BackgroundColor="#464646">
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="ZeroFlip.UWP.App">
+      <uap:VisualElements
+        DisplayName="ZeroFlip.UWP"
+        Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png"
+        Description="ZeroFlip.UWP"
+        BackgroundColor="transparent">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
     </Application>
   </Applications>
+
   <Capabilities>
     <Capability Name="internetClient" />
   </Capabilities>

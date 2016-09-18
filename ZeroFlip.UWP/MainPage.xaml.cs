@@ -20,17 +20,11 @@ namespace ZeroFlip.UWP
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class GamePage : Page
+    public sealed partial class MainPage : Page
     {
-		readonly ZeroFlipGame _game;
-
-		public GamePage()
+        public MainPage()
         {
             this.InitializeComponent();
-
-			// Create the game.
-			var launchArguments = string.Empty;
-            _game = MonoGame.Framework.XamlGame<ZeroFlipGame>.Create(launchArguments, Window.Current.CoreWindow, swapChainPanel);
         }
     }
 }
