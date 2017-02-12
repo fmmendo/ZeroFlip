@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeroFlip.Lib", "ZeroFlip.Lib\ZeroFlip.Lib.csproj", "{67F9D3A8-F71E-4428-913F-C37AE82CDB24}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeroFlip.UWP", "ZeroFlip.UWP\ZeroFlip.UWP.csproj", "{934ABC1E-9954-4558-85C0-2951677977FA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{39FEB0BB-5790-4CC3-826F-939B7059C30D} = {39FEB0BB-5790-4CC3-826F-939B7059C30D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mendo.UWP", "..\MendoTools\Mendo.UWP\Mendo.UWP.csproj", "{39FEB0BB-5790-4CC3-826F-939B7059C30D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeroFlip.Lib", "ZeroFlip.Lib\ZeroFlip.Lib.csproj", "{344DBD23-F32E-4F8C-A3B9-6224729A82A9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,22 +24,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|ARM.Build.0 = Debug|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|x64.Build.0 = Debug|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Debug|x86.Build.0 = Debug|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|Any CPU.Build.0 = Release|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|ARM.ActiveCfg = Release|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|ARM.Build.0 = Release|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|x64.ActiveCfg = Release|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|x64.Build.0 = Release|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|x86.ActiveCfg = Release|Any CPU
-		{67F9D3A8-F71E-4428-913F-C37AE82CDB24}.Release|x86.Build.0 = Release|Any CPU
 		{934ABC1E-9954-4558-85C0-2951677977FA}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{934ABC1E-9954-4558-85C0-2951677977FA}.Debug|ARM.ActiveCfg = Debug|ARM
 		{934ABC1E-9954-4558-85C0-2951677977FA}.Debug|ARM.Build.0 = Debug|ARM
@@ -73,6 +60,22 @@ Global
 		{39FEB0BB-5790-4CC3-826F-939B7059C30D}.Release|x64.Build.0 = Release|x64
 		{39FEB0BB-5790-4CC3-826F-939B7059C30D}.Release|x86.ActiveCfg = Release|x86
 		{39FEB0BB-5790-4CC3-826F-939B7059C30D}.Release|x86.Build.0 = Release|x86
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Debug|ARM.ActiveCfg = Debug|ARM
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Debug|ARM.Build.0 = Debug|ARM
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Debug|x64.ActiveCfg = Debug|x64
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Debug|x64.Build.0 = Debug|x64
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Debug|x86.ActiveCfg = Debug|x86
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Debug|x86.Build.0 = Debug|x86
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Release|ARM.ActiveCfg = Release|ARM
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Release|ARM.Build.0 = Release|ARM
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Release|x64.ActiveCfg = Release|x64
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Release|x64.Build.0 = Release|x64
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Release|x86.ActiveCfg = Release|x86
+		{344DBD23-F32E-4F8C-A3B9-6224729A82A9}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

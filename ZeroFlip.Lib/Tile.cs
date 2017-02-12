@@ -9,7 +9,9 @@ namespace ZeroFlip.Lib
     public class Tile
     {
         public int Value { get; set; }
+
         public bool Revealed { get; set; }
+
         public bool HintZero { get; set; }
         public bool HintOne { get; set; }
         public bool HintTwo { get; set; }

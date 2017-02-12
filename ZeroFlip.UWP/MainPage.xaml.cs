@@ -22,9 +22,30 @@ namespace ZeroFlip.UWP
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+
+        public GameViewModel Game
+        {
+            get { return (GameViewModel)GetValue(GameProperty); }
+            set { SetValue(GameProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Game.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty GameProperty =
+            DependencyProperty.Register("Game", typeof(GameViewModel), typeof(MainPage), new PropertyMetadata(0));
+
+
+
         public MainPage()
         {
+            Game = new GameViewModel();
+
             this.InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Game.GenerateGrid();
         }
     }
 }

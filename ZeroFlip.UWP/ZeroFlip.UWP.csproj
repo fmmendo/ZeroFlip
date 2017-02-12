@@ -11,7 +11,7 @@
     <AssemblyName>ZeroFlip.UWP</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
-    <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
+    <TargetPlatformVersion>10.0.14393.0</TargetPlatformVersion>
     <TargetPlatformMinVersion>10.0.10240.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
@@ -129,8 +129,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MendoTools\Mendo.UWP\Mendo.UWP.csproj">
+      <Project>{39feb0bb-5790-4cc3-826f-939b7059c30d}</Project>
+      <Name>Mendo.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ZeroFlip.Lib\ZeroFlip.Lib.csproj">
-      <Project>{67F9D3A8-F71E-4428-913F-C37AE82CDB24}</Project>
+      <Project>{344dbd23-f32e-4f8c-a3b9-6224729a82a9}</Project>
       <Name>ZeroFlip.Lib</Name>
     </ProjectReference>
   </ItemGroup>

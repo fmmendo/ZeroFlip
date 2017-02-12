@@ -17,8 +17,9 @@ namespace ZeroFlip.Lib
         private Tile[,] grid;
         private Random Random = new Random();
 
-        public int Level { get { return level; } }
-        public int Score { get { return score; } }
+        public int Level => level;
+        public int Score => score;
+        public int GridSize => gridSize;
 
         public ZeroGrid(int level = 1, int gridSize = 5)
         {
