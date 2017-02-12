@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mendo.UWP.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace ZeroFlip.Lib
 {
-    public class Tile
+    public class Tile : ViewModelBase
     {
-        public int Value { get; set; }
+        public int Value { get { return GetV(0); } set { Set(value); } }
 
-        public bool Revealed { get; set; }
+        public bool Revealed { get { return GetV(false); } set { Set(value); } }
 
-        public bool HintZero { get; set; }
-        public bool HintOne { get; set; }
-        public bool HintTwo { get; set; }
-        public bool HintThree { get; set; }
+        public bool HintZero { get { return GetV(false); } set { Set(value); } }
+        public bool HintOne { get { return GetV(false); } set { Set(value); } }
+        public bool HintTwo { get { return GetV(false); } set { Set(value); } }
+        public bool HintThree { get { return GetV(false); } set { Set(value); } }
     }
 }

@@ -8,24 +8,26 @@ namespace ZeroFlip.Lib
 {
     public class ZeroGrid
     {
-        private const int BASE_SCORE = 1;
-
+        public int Level => level;
+        public int Score => score;
+        public int GridSize => gridSize;
+        
         private int score;
         private int level;
         private int gridSize;
         private int numberOfCells;
-        private Tile[,] grid;
-        private Random Random = new Random();
 
-        public int Level => level;
-        public int Score => score;
-        public int GridSize => gridSize;
+        private Tile[,] grid;
+
+        private Random Random = new Random();
 
         public ZeroGrid(int level = 1, int gridSize = 5)
         {
             this.level = level;
             this.gridSize = gridSize;
-            this.numberOfCells = gridSize * gridSize;
+
+            numberOfCells = gridSize * gridSize;
+            score = 0;
 
             CreateGrid(level);
         }
@@ -60,6 +62,17 @@ namespace ZeroFlip.Lib
         public int GetColumnZeros(int column)
         {
             return GetColumn(column).Where(t => t.Value == 0).Count();
+        }
+
+        public void RevealTile(int row, int column)
+        {
+            grid[row, column].Revealed = true;
+
+            score *= grid[row, column].Value;
+        }
+
+        private void EvaluateBoard()
+        {
         }
 
         private void ResetGrid()
@@ -119,13 +132,6 @@ namespace ZeroFlip.Lib
         {
             for (int i = 0; i < numberOfCells; i++)
                 yield return i;
-        }
-
-        public void RevealTile(int row, int column)
-        {
-            grid[row, column].Revealed = true;
-
-            score *= grid[row, column].Value;
         }
     }
 }

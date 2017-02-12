@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mendo.UWP.Common;
+using Mendo.UWP.Network;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace ZeroFlip.UWP
     /// </summary>
     sealed partial class App : Application
     {
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -30,6 +33,9 @@ namespace ZeroFlip.UWP
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+
+            Http.DefaultCache = SQLiteCache.CompressedInstance;
         }
 
         /// <summary>
@@ -37,7 +43,7 @@ namespace ZeroFlip.UWP
         /// will be used such as when the application is launched to open a specific file.
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -56,13 +62,25 @@ namespace ZeroFlip.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {
-                    //TODO: Load state from previously suspended application
-                }
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+
+                NavigationService.SetFrame(rootFrame);
+                SuspensionManager.RegisterFrame(rootFrame, "appFrame");
+
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
+                {
+                    // Attempt to restore the navigation state if the application was terminated
+                    try
+                    {
+                        await SuspensionManager.RestoreAsync();
+                        await SuspensionManager.DeleteSavedStatesAsync();
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
             }
 
             if (e.PrelaunchActivated == false)
@@ -72,7 +90,7 @@ namespace ZeroFlip.UWP
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    NavigationService.Navigate(typeof(MainPage), e.Arguments);
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

@@ -27,10 +27,14 @@ namespace ZeroFlip.UWP
         {
         }
 
+        public void NewGame()
+        {
+            GenerateGrid(1, 5);
+        }
+
         public void GenerateGrid(int level = 1, int size = 5)
         {
             grid = new ZeroGrid(level, size);
-
 
             Rows = new BindableCollection<Tile[]>();
 
@@ -48,6 +52,11 @@ namespace ZeroFlip.UWP
                 RowZeros.Add(grid.GetRowZeros(i));
                 ColumnZeros.Add(grid.GetColumnZeros(i));
             }
+        }
+
+        public void TileClick( Tile t)
+        {
+            t.Revealed = true;
         }
     }
 }

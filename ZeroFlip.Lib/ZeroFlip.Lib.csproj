@@ -113,6 +113,12 @@
     <Compile Include="ZeroGrid.cs" />
     <EmbeddedResource Include="Properties\ZeroFlip.Lib.rd.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MendoTools\Mendo.UWP\Mendo.UWP.csproj">
+      <Project>{39feb0bb-5790-4cc3-826f-939b7059c30d}</Project>
+      <Name>Mendo.UWP</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

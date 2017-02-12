@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mendo.UWP.Common;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,32 +21,29 @@ namespace ZeroFlip.UWP
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : PageBase
     {
-
-
-        public GameViewModel Game
-        {
-            get { return (GameViewModel)GetValue(GameProperty); }
-            set { SetValue(GameProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Game.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty GameProperty =
-            DependencyProperty.Register("Game", typeof(GameViewModel), typeof(MainPage), new PropertyMetadata(0));
 
 
 
         public MainPage()
         {
-            Game = new GameViewModel();
+            //Game = new GameViewModel();
 
             this.InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Game.GenerateGrid();
+            NavigationService.Navigate(typeof(GamePage), true);
+            //Game.NewGame();
         }
+
+        //private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        //{
+        //    (e.ClickedItem as Lib.Tile).Revealed = true;
+        //    if (e.ClickedItem is Lib.Tile)
+        //        Game.TileClick((e.ClickedItem as Lib.Tile));
+        //}
     }
 }
