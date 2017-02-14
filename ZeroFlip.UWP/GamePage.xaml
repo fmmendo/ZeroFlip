@@ -19,6 +19,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <ListView ItemsSource="{x:Bind Game.Rows, Mode=OneWay}" IsItemClickEnabled="False" SelectionMode="None">
@@ -100,5 +101,10 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <TextBlock Grid.Row="3">
+            <Run Text="Score: "/>
+            <Run Text="{x:Bind Game.Score, Mode=OneWay}"/>
+        </TextBlock>
     </Grid>
 </c:PageBase>

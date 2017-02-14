@@ -11,11 +11,14 @@ namespace ZeroFlip.Lib
         public int Level => level;
         public int Score => score;
         public int GridSize => gridSize;
-        
+
         private int score;
         private int level;
         private int gridSize;
         private int numberOfCells;
+        private int maxPoints;
+
+        public event EventHandler<GameEndedEventArgs> GameEnded;
 
         private Tile[,] grid;
 
@@ -64,15 +67,44 @@ namespace ZeroFlip.Lib
             return GetColumn(column).Where(t => t.Value == 0).Count();
         }
 
+        public void RevealTile(Tile t)
+        {
+            t.Revealed = true;
+            if (score == 0) score = 1;
+            UpdateScore(t.Value);
+        }
+
         public void RevealTile(int row, int column)
         {
             grid[row, column].Revealed = true;
-
-            score *= grid[row, column].Value;
+            UpdateScore(grid[row, column].Value);
         }
 
-        private void EvaluateBoard()
+        private void UpdateScore(int value)
         {
+            if (score == 0)
+                score = 1;
+
+            score *= value;
+
+            if (value == 0)
+            {
+                RevealBoard();
+                GameEnded?.Invoke(this, new GameEndedEventArgs { Message = "Game Over", NextLevel = 1 });
+            }
+            else if (score == maxPoints)
+            {
+                RevealBoard();
+                GameEnded?.Invoke(this, new GameEndedEventArgs { Message = "You Win", NextLevel = level >= 8 ? level : level++ });
+            }
+                
+        }
+
+        private void RevealBoard()
+        {
+            for (int i = 0; i < gridSize; i++)
+                for (int j = 0; j < gridSize; j++)
+                    grid[i, j].Revealed = true;
         }
 
         private void ResetGrid()
@@ -94,6 +126,7 @@ namespace ZeroFlip.Lib
             var scores = ScoringData.ScoreList.Where(i => i.Points >= data.Min && i.Points <= data.Max);
             // get a config for the current game
             var config = scores.ElementAt(Random.Next(scores.Count()));
+            maxPoints = config.Points;
 
             var tileValues = new List<int>();
 

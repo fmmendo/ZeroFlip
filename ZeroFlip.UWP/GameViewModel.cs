@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Popups;
 using ZeroFlip.Lib;
 using ZeroFlip.UWP.Common;
 
@@ -22,6 +23,7 @@ namespace ZeroFlip.UWP
         public BindableCollection<int> ColumnSum { get { return Get(new BindableCollection<int>()); } set { Set(value); } }
         public BindableCollection<int> ColumnZeros { get { return Get(new BindableCollection<int>()); } set { Set(value); } }
 
+        public int Score { get { return grid.Score; } }
 
         public GameViewModel()
         {
@@ -35,6 +37,7 @@ namespace ZeroFlip.UWP
         public void GenerateGrid(int level = 1, int size = 5)
         {
             grid = new ZeroGrid(level, size);
+            grid.GameEnded += Grid_GameEnded;
 
             Rows = new BindableCollection<Tile[]>();
 
@@ -54,9 +57,22 @@ namespace ZeroFlip.UWP
             }
         }
 
-        public void TileClick( Tile t)
+        private async void Grid_GameEnded(object sender, GameEndedEventArgs args)
         {
-            t.Revealed = true;
+            grid.GameEnded += Grid_GameEnded;
+
+            MessageDialog md = new MessageDialog(args.Message);
+            
+            var result = await md.ShowAsync();
+
+            GenerateGrid(args.NextLevel);
+        }
+
+        public void TileClick(Tile t)
+        {
+            grid.RevealTile(t);
+
+            OnPropertyChanged(nameof(Score));
         }
     }
 }
