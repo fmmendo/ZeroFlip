@@ -12,67 +12,67 @@ namespace ZeroFlip.UWP
 {
     public class GameViewModel : ViewModelBase
     {
-        ZeroGrid grid;
-        public int Level { get; set; }
+        //Game grid;
+        //public int Level { get; set; }
 
-        public BindableCollection<Tile[]> Rows { get { return Get(new BindableCollection<Tile[]>()); } set { Set(value); } }
+        //public BindableCollection<Tile[]> Rows { get { return Get(new BindableCollection<Tile[]>()); } set { Set(value); } }
 
-        public BindableCollection<int> RowSum { get { return Get(new BindableCollection<int>()); } set { Set(value); } }
-        public BindableCollection<int> RowZeros { get { return Get(new BindableCollection<int>()); } set { Set(value); } }
+        //public BindableCollection<int> RowSum { get { return Get(new BindableCollection<int>()); } set { Set(value); } }
+        //public BindableCollection<int> RowZeros { get { return Get(new BindableCollection<int>()); } set { Set(value); } }
 
-        public BindableCollection<int> ColumnSum { get { return Get(new BindableCollection<int>()); } set { Set(value); } }
-        public BindableCollection<int> ColumnZeros { get { return Get(new BindableCollection<int>()); } set { Set(value); } }
+        //public BindableCollection<int> ColumnSum { get { return Get(new BindableCollection<int>()); } set { Set(value); } }
+        //public BindableCollection<int> ColumnZeros { get { return Get(new BindableCollection<int>()); } set { Set(value); } }
 
-        public int Score { get { return grid.Score; } }
+        //public int Score { get { return grid.CurrentScore; } }
 
-        public GameViewModel()
-        {
-        }
+        //public GameViewModel()
+        //{
+        //}
 
-        public void NewGame()
-        {
-            GenerateGrid(1, 5);
-        }
+        //public void NewGame()
+        //{
+        //    GenerateGrid(1, 5);
+        //}
 
-        public void GenerateGrid(int level = 1, int size = 5)
-        {
-            grid = new ZeroGrid(level, size);
-            grid.GameEnded += Grid_GameEnded;
+        //public void GenerateGrid(int level = 1, int size = 5)
+        //{
+        //    grid = new Game(level, size);
+        //    grid.GameEnded += Grid_GameEnded;
 
-            Rows = new BindableCollection<Tile[]>();
+        //    Rows = new BindableCollection<Tile[]>();
 
-            RowSum = new BindableCollection<int>();
-            RowZeros = new BindableCollection<int>();
-            ColumnSum = new BindableCollection<int>();
-            ColumnZeros = new BindableCollection<int>();
+        //    RowSum = new BindableCollection<int>();
+        //    RowZeros = new BindableCollection<int>();
+        //    ColumnSum = new BindableCollection<int>();
+        //    ColumnZeros = new BindableCollection<int>();
 
-            for (int i = 0; i < grid.GridSize; i++) {
-                Rows.Add(grid.GetRow(i).ToArray());
+        //    for (int i = 0; i < grid.Grid.GridSize; i++) {
+        //        Rows.Add(grid.Grid.GetRow(i).ToArray());
 
-                RowSum.Add(grid.GetRowSum(i));
-                ColumnSum.Add(grid.GetColumnSum(i));
+        //        RowSum.Add(grid.Grid.GetRowSum(i));
+        //        ColumnSum.Add(grid.Grid.GetColumnSum(i));
 
-                RowZeros.Add(grid.GetRowZeros(i));
-                ColumnZeros.Add(grid.GetColumnZeros(i));
-            }
-        }
+        //        RowZeros.Add(grid.Grid.GetRowZeros(i));
+        //        ColumnZeros.Add(grid.Grid.GetColumnZeros(i));
+        //    }
+        //}
 
-        private async void Grid_GameEnded(object sender, GameEndedEventArgs args)
-        {
-            grid.GameEnded += Grid_GameEnded;
+        //private async void Grid_GameEnded(object sender, GameEndedEventArgs args)
+        //{
+        //    grid.GameEnded += Grid_GameEnded;
 
-            MessageDialog md = new MessageDialog(args.Message);
+        //    MessageDialog md = new MessageDialog(args.Message);
             
-            var result = await md.ShowAsync();
+        //    var result = await md.ShowAsync();
 
-            GenerateGrid(args.NextLevel);
-        }
+        //    GenerateGrid(args.NextLevel);
+        //}
 
-        public void TileClick(Tile t)
-        {
-            grid.RevealTile(t);
+        //public void TileClick(Tile t)
+        //{
+        //    grid.TileClick(t);
 
-            OnPropertyChanged(nameof(Score));
-        }
+        //    OnPropertyChanged(nameof(Score));
+        //}
     }
 }

@@ -1,16 +1,16 @@
-﻿using System;
+﻿using Mendo.UWP.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ZeroFlip.Lib
 {
-    public class ZeroGrid
+    public class ZeroGrid : ViewModelBase
     {
-        public int Level => level;
-        public int Score => score;
+       // public int Level => level;
+       // public int Score => score;
         public int GridSize => gridSize;
+        public int TotalPoints => maxPoints;
 
         private int score;
         private int level;
@@ -18,10 +18,9 @@ namespace ZeroFlip.Lib
         private int numberOfCells;
         private int maxPoints;
 
-        public event EventHandler<GameEndedEventArgs> GameEnded;
+        //public event EventHandler<GameEndedEventArgs> GameEnded;
 
         private Tile[,] grid;
-
         private Random Random = new Random();
 
         public ZeroGrid(int level = 1, int gridSize = 5)
@@ -70,37 +69,17 @@ namespace ZeroFlip.Lib
         public void RevealTile(Tile t)
         {
             t.Revealed = true;
-            if (score == 0) score = 1;
-            UpdateScore(t.Value);
+            //if (score == 0) score = 1;
+            //UpdateScore(t.Value);
         }
 
         public void RevealTile(int row, int column)
         {
             grid[row, column].Revealed = true;
-            UpdateScore(grid[row, column].Value);
+            //UpdateScore(grid[row, column].Value);
         }
 
-        private void UpdateScore(int value)
-        {
-            if (score == 0)
-                score = 1;
-
-            score *= value;
-
-            if (value == 0)
-            {
-                RevealBoard();
-                GameEnded?.Invoke(this, new GameEndedEventArgs { Message = "Game Over", NextLevel = 1 });
-            }
-            else if (score == maxPoints)
-            {
-                RevealBoard();
-                GameEnded?.Invoke(this, new GameEndedEventArgs { Message = "You Win", NextLevel = level >= 8 ? level : level++ });
-            }
-                
-        }
-
-        private void RevealBoard()
+        public void RevealBoard()
         {
             for (int i = 0; i < gridSize; i++)
                 for (int j = 0; j < gridSize; j++)
@@ -114,6 +93,16 @@ namespace ZeroFlip.Lib
             for (int i = 0; i < gridSize; i++)
                 for (int j = 0; j < gridSize; j++)
                     grid[i, j] = new Tile { Value = 1 };
+        }
+
+        public int GetNumberOfMultipliersFlipped()
+        {
+            int num = 0;
+            for (int i = 0; i < gridSize; i++)
+                for (int j = 0; j < gridSize; j++)
+                    if (grid[i, j].Revealed && grid[i, j].Value > 1)
+                        num++;
+            return num;
         }
 
         private void CreateGrid(int level = 1)
