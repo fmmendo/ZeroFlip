@@ -20,7 +20,6 @@ namespace ZeroFlip.UWP
             get { return (Game)GetValue(GameProperty); }
             set { SetValue(GameProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for Game.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty GameProperty =
             DependencyProperty.Register("Game", typeof(Game), typeof(GamePage), new PropertyMetadata(0));
@@ -50,7 +49,7 @@ namespace ZeroFlip.UWP
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            (e.ClickedItem as Lib.Tile).Revealed = true;
+            //(e.ClickedItem as Lib.Tile).Revealed = true;
             if (e.ClickedItem is Lib.Tile)
                 Game.TileClick((e.ClickedItem as Lib.Tile));
         }

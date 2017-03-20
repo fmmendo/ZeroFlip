@@ -10,104 +10,21 @@
     x:Name="root"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                <GradientStop Offset="0" Color="#c4c4c4"/>
+                <GradientStop Offset=".4" Color="#f7f7f7"/>
+                <GradientStop Offset=".6" Color="#f7f7f7"/>
+                <GradientStop Offset="1" Color="#c4c4c4"/>
+            </LinearGradientBrush>
+        </Grid.Background>
 
-        <ListView ItemsSource="{x:Bind Game.Rows, Mode=OneWay}" IsItemClickEnabled="False" SelectionMode="None">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-
-                    <ListView ItemsSource="{Binding}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick" SelectionMode="None">
-
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <ItemsStackPanel Orientation="Horizontal"/>
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Tile">
-                                    <TextBlock Text="{x:Bind Value, Mode=OneWay}" Visibility="{x:Bind Revealed, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-
-                    </ListView>
-
-                </DataTemplate>
-            </ListView.ItemTemplate>
-
-        </ListView>
-
-        <ListView ItemsSource="{x:Bind Game.RowSum, Mode=OneWay}" Grid.Column="1" IsItemClickEnabled="False" SelectionMode="None">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}" Foreground="Blue"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <ListView ItemsSource="{x:Bind Game.RowZeros, Mode=OneWay}" Grid.Column="2" IsItemClickEnabled="False" SelectionMode="None">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel Orientation="Vertical"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}" Foreground="Red"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <ListView ItemsSource="{x:Bind Game.ColumnSum, Mode=OneWay}" Grid.Row="1" IsItemClickEnabled="False" SelectionMode="None">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}" Foreground="Blue"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <ListView ItemsSource="{x:Bind Game.ColumnZeros, Mode=OneWay}" Grid.Row="2" IsItemClickEnabled="False" SelectionMode="None">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsStackPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}" Foreground="Red"/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>-->
-
-        <StackPanel Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Center">
-            <Button Content="New Game" Click="Button_Click" HorizontalAlignment="Stretch"/>
-            <Button Content="How to Play" HorizontalAlignment="Stretch"/>
-            <Button Content="Quit" HorizontalAlignment="Stretch"/>
-            <Button Content="Generate" Click="Button_Click" HorizontalAlignment="Stretch"/>
+        <StackPanel Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="0,0,0,48">
+            <Button Content="New Game" Click="Button_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource Atari}" Margin="6" Padding="12"/>
+            <Button Content="How to Play" HorizontalAlignment="Stretch" FontFamily="{StaticResource Atari}" Margin="6" Padding="12"/>
+            <Button Content="Quit" HorizontalAlignment="Stretch" FontFamily="{StaticResource Atari}" Margin="6" Padding="12"/>
+            <Button Content="Generate" Click="Button_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource Atari}" Margin="6" Padding="12"/>
         </StackPanel>
     </Grid>
 </c:PageBase>

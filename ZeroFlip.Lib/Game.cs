@@ -1,6 +1,7 @@
 ﻿using Mendo.UWP;
 using Mendo.UWP.Common;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ZeroFlip.Lib
@@ -11,6 +12,12 @@ namespace ZeroFlip.Lib
         public int Level { get; private set; }
         public int CurrentScore { get; private set; }
         public int GameScore { get; private set; }
+
+        public bool? NotesMode { get { return GetV(false); } set { Set(value); } }
+        public bool? Notes0 { get { return GetV(false); } set { Set(value); } }
+        public bool? Notes1 { get { return GetV(false); } set { Set(value); } }
+        public bool? Notes2 { get { return GetV(false); } set { Set(value); } }
+        public bool? Notes3 { get { return GetV(false); } set { Set(value); } }
 
         public BindableCollection<Tile[]> Rows { get { return Get<BindableCollection<Tile[]>>(); } set { Set(value); } }
         public BindableCollection<int> RowSum { get { return Get<BindableCollection<int>>(); } set { Set(value); } }
@@ -25,13 +32,15 @@ namespace ZeroFlip.Lib
 
         public Game()
         {
+
         }
+
 
         public void NewGame(int level = 1, int size = 5)
         {
             Level = level;
             CurrentScore = 0;
-
+            
             Grid = new ZeroGrid(level, size);
 
             Rows = new BindableCollection<Tile[]>();
@@ -54,8 +63,22 @@ namespace ZeroFlip.Lib
 
         public void TileClick(Tile t)
         {
-            Grid.RevealTile(t);
-            UpdateScore(t.Value);
+            if (NotesMode.HasValue && NotesMode.Value)
+            {
+                if (Notes0.HasValue && Notes0.Value)
+                    t.HintZero = !t.HintZero;
+                else if(Notes1.HasValue && Notes1.Value)
+                    t.HintOne = !t.HintOne;
+                else if (Notes2.HasValue && Notes2.Value)
+                    t.HintTwo = !t.HintTwo;
+                else if(Notes3.HasValue && Notes3.Value)
+                    t.HintThree = !t.HintThree;
+            }
+            else
+            {
+                Grid.RevealTile(t);
+                UpdateScore(t.Value);
+            }
         }
 
         private void UpdateScore(int value)

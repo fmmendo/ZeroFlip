@@ -7,8 +7,6 @@ namespace ZeroFlip.Lib
 {
     public class ZeroGrid : ViewModelBase
     {
-       // public int Level => level;
-       // public int Score => score;
         public int GridSize => gridSize;
         public int TotalPoints => maxPoints;
 
@@ -17,8 +15,6 @@ namespace ZeroFlip.Lib
         private int gridSize;
         private int numberOfCells;
         private int maxPoints;
-
-        //public event EventHandler<GameEndedEventArgs> GameEnded;
 
         private Tile[,] grid;
         private Random Random = new Random();
@@ -69,14 +65,11 @@ namespace ZeroFlip.Lib
         public void RevealTile(Tile t)
         {
             t.Revealed = true;
-            //if (score == 0) score = 1;
-            //UpdateScore(t.Value);
         }
 
         public void RevealTile(int row, int column)
         {
             grid[row, column].Revealed = true;
-            //UpdateScore(grid[row, column].Value);
         }
 
         public void RevealBoard()

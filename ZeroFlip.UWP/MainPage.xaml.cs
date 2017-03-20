@@ -23,13 +23,9 @@ namespace ZeroFlip.UWP
     /// </summary>
     public sealed partial class MainPage : PageBase
     {
-
-
-
         public MainPage()
         {
             //Game = new GameViewModel();
-
             this.InitializeComponent();
         }
 

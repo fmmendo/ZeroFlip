@@ -8,7 +8,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+            
+            <FontFamily x:Key="Atari">/Assets/atarifull.ttf#Atari Font Full Version</FontFamily>
         </ResourceDictionary>
-        
-    </Application.Resources>
+</Application.Resources>
 </Application>
