@@ -101,16 +101,16 @@
 
 
                 <ListView ItemsSource="{x:Bind Game.Rows, Mode=OneWay}"
-                  IsItemClickEnabled="False"
-                  ItemContainerStyle="{StaticResource ListViewRowStyle}"
-                  SelectionMode="None"
-                  HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch"
-                  ScrollViewer.HorizontalScrollMode="Disabled"
-                  ScrollViewer.VerticalScrollMode="Disabled"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  ScrollViewer.ZoomMode="Disabled">
+                          IsItemClickEnabled="False"
+                          ItemContainerStyle="{StaticResource ListViewRowStyle}"
+                          SelectionMode="None"
+                          HorizontalAlignment="Stretch"
+                          VerticalAlignment="Stretch"
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          ScrollViewer.ZoomMode="Disabled">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsStackPanel Orientation="Vertical"/>
@@ -118,15 +118,14 @@
                     </ListView.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-
                             <ListView ItemsSource="{Binding}"
                               IsItemClickEnabled="True"
                               ItemClick="ListView_ItemClick"
                               SelectionMode="None"
                               x:Name="lstNumbers"
                               FontSize="20"
-                  HorizontalAlignment="Stretch"
-                  VerticalAlignment="Stretch"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
                               ItemContainerStyle="{StaticResource ListViewItemStyle}"
                               ScrollViewer.HorizontalScrollMode="Disabled"
                               ScrollViewer.VerticalScrollMode="Disabled"
@@ -152,14 +151,15 @@
                                                     <RowDefinition Height="*"/>
                                                     <RowDefinition Height="*"/>
                                                 </Grid.RowDefinitions>
-                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="0" Visibility="{x:Bind HintZero, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                                <TextBlock Grid.Row="0" Grid.Column="1" Text="1" Visibility="{x:Bind HintOne, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="2" Visibility="{x:Bind HintTwo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                                <TextBlock Grid.Row="1" Grid.Column="1" Text="3" Visibility="{x:Bind HintThree, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="0" FontSize="8" Visibility="{x:Bind HintZero, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                <TextBlock Grid.Row="0" Grid.Column="1" Text="1" FontSize="8" Visibility="{x:Bind HintOne, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="2" FontSize="8" Visibility="{x:Bind HintTwo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                <TextBlock Grid.Row="1" Grid.Column="1" Text="3" FontSize="8" Visibility="{x:Bind HintThree, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                                                 <TextBlock Text="{x:Bind Value, Mode=OneWay}"
                                                            Grid.ColumnSpan="2" Grid.RowSpan="2"
                                                            x:Name="tbNumber"
+                                                           FontSize="20"
                                                            Visibility="{x:Bind Revealed, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Grid>

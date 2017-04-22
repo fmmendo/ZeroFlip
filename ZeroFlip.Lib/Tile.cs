@@ -13,9 +13,9 @@ namespace ZeroFlip.Lib
 
         public bool Revealed { get { return GetV(false); } set { Set(value); } }
 
-        public bool HintZero { get { return GetV(false); } set { Set(value); } }
-        public bool HintOne { get { return GetV(false); } set { Set(value); } }
-        public bool HintTwo { get { return GetV(false); } set { Set(value); } }
-        public bool HintThree { get { return GetV(false); } set { Set(value); } }
+        public bool HintZero { get { return Revealed ? false : GetV(false); } set { Set(value); } }
+        public bool HintOne { get { return Revealed ? false : GetV(false); } set { Set(value); } }
+        public bool HintTwo { get { return Revealed ? false : GetV(false); } set { Set(value); } }
+        public bool HintThree { get { return Revealed ? false : GetV(false); } set { Set(value); } }
     }
 }

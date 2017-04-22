@@ -34,9 +34,20 @@ namespace ZeroFlip.UWP
 
         private async void Game_GameEnded(object sender, GameEndedEventArgs e)
         {
-            MessageDialog md = new MessageDialog(e.Message);
+                Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
+              {
+            try
+            {
 
+            MessageDialog md = new MessageDialog(e.Message, e.Message);
             var result = await md.ShowAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+            });
         }
 
         protected override void LoadState(object parameter, Dictionary<string, object> pageState)
