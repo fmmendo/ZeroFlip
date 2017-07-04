@@ -13,7 +13,7 @@ namespace ZeroFlip.Lib
         public int CurrentScore { get { return GetV(0); } set { Set(value); } }
         public int GameScore { get { return GetV(0); } set { Set(value); } }
 
-        public bool? NotesMode { get { return GetV(false); } set { Set(value); } }
+        public bool? NotesMode { get { return GetV(false); } set { Set(value); if (!value.Value) { Notes0 = Notes1 = Notes2 = Notes3 = false; } } }
         public bool? Notes0 { get { return GetV(false); } set { Set(value); if (value.Value) { Notes1 = Notes2 = Notes3 = false; } } }
         public bool? Notes1 { get { return GetV(false); } set { Set(value); if (value.Value) { Notes0 = Notes2 = Notes3 = false; } } } 
         public bool? Notes2 { get { return GetV(false); } set { Set(value); if (value.Value) { Notes0 = Notes1 = Notes3 = false; } } } 

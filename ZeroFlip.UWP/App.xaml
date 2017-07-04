@@ -8,8 +8,9 @@
     <Application.Resources>
         <ResourceDictionary>
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-            
-            <FontFamily x:Key="Atari">/Assets/atarifull.ttf#Atari Font Full Version</FontFamily>
+
+            <FontFamily x:Key="Vonique">/Assets/Vonique 64.ttf#Vonique 64</FontFamily>
+            <FontFamily x:Key="VoniqueBold">/Assets/Vonique 64 Bold.ttf#Vonique 64</FontFamily>
         </ResourceDictionary>
 </Application.Resources>
 </Application>

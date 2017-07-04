@@ -13,18 +13,17 @@
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                <GradientStop Offset="0" Color="#c4c4c4"/>
+                <GradientStop Offset="0" Color="#757a87"/>
                 <GradientStop Offset=".4" Color="#f7f7f7"/>
                 <GradientStop Offset=".6" Color="#f7f7f7"/>
-                <GradientStop Offset="1" Color="#c4c4c4"/>
+                <GradientStop Offset="1" Color="#757a87"/>
             </LinearGradientBrush>
         </Grid.Background>
 
         <StackPanel Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="0,0,0,48">
-            <Button Content="New Game" Click="Button_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource Atari}" Margin="6" Padding="12"/>
-            <Button Content="How to Play" HorizontalAlignment="Stretch" FontFamily="{StaticResource Atari}" Margin="6" Padding="12"/>
-            <Button Content="Quit" HorizontalAlignment="Stretch" FontFamily="{StaticResource Atari}" Margin="6" Padding="12"/>
-            <Button Content="Generate" Click="Button_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource Atari}" Margin="6" Padding="12"/>
+            <Button Content="NEW GAME" Click="Button_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Margin="6" Padding="12"/>
+            <Button Content="HOW TO PLAY" Click="HowToPlay_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Margin="6" Padding="12"/>
+            <Button Content="QUIT" Click="Exit_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Margin="6" Padding="12"/>
         </StackPanel>
     </Grid>
 </c:PageBase>

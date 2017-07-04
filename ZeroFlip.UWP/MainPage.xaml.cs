@@ -25,21 +25,22 @@ namespace ZeroFlip.UWP
     {
         public MainPage()
         {
-            //Game = new GameViewModel();
             this.InitializeComponent();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(typeof(GamePage), true);
-            //Game.NewGame();
         }
 
-        //private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-        //{
-        //    (e.ClickedItem as Lib.Tile).Revealed = true;
-        //    if (e.ClickedItem is Lib.Tile)
-        //        Game.TileClick((e.ClickedItem as Lib.Tile));
-        //}
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Exit();
+        }
+
+        private void HowToPlay_Click(object sender, RoutedEventArgs e)
+        {
+            //NavigationService.Navigate(typeof(GamePage), true);
+        }
     }
 }

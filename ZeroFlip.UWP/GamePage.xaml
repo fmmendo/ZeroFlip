@@ -83,14 +83,14 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="ZeroFlip" FontSize="20" FontFamily="{StaticResource Atari}" HorizontalAlignment="Center" Margin="12"/>
-        <TextBlock Grid.Row="1" FontSize="20" FontFamily="{StaticResource Atari}" Margin="12">
+        <TextBlock Text="ZeroFlip" FontSize="20" FontFamily="{StaticResource VoniqueBold}" HorizontalAlignment="Center" Margin="12"/>
+        <TextBlock Grid.Row="1" FontSize="20" FontFamily="{StaticResource VoniqueBold}" Margin="12">
             <Run Text="Level" />
             <Run Text="{x:Bind Game.Level, Mode=OneWay}" />
         </TextBlock>
 
         <Viewbox Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Stretch="Uniform" Margin="12">
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -144,7 +144,7 @@
 
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="data:Tile">
-                                        <Border Background="Beige" Padding="6">
+                                        <Border Margin="1" BorderBrush="Black" BorderThickness="0.5" CornerRadius="0">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
@@ -154,15 +154,17 @@
                                                     <RowDefinition Height="*"/>
                                                     <RowDefinition Height="*"/>
                                                 </Grid.RowDefinitions>
-                                                <TextBlock Grid.Row="0" Grid.Column="0" Text="0" FontSize="8" Visibility="{x:Bind HintZero, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                                <TextBlock Grid.Row="0" Grid.Column="1" Text="1" FontSize="8" Visibility="{x:Bind HintOne, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                                <TextBlock Grid.Row="1" Grid.Column="0" Text="2" FontSize="8" Visibility="{x:Bind HintTwo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                                                <TextBlock Grid.Row="1" Grid.Column="1" Text="3" FontSize="8" Visibility="{x:Bind HintThree, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Text="0" FontSize="8" FontFamily="{StaticResource Vonique}" Visibility="{x:Bind HintZero, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Text="1" FontSize="8" FontFamily="{StaticResource Vonique}" Visibility="{x:Bind HintOne, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="2" FontSize="8" FontFamily="{StaticResource Vonique}" Visibility="{x:Bind HintTwo, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Text="3" FontSize="8" FontFamily="{StaticResource Vonique}" Visibility="{x:Bind HintThree, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
                                                 <TextBlock Text="{x:Bind Value, Mode=OneWay}"
                                                            Grid.ColumnSpan="2" Grid.RowSpan="2"
                                                            x:Name="tbNumber"
-                                                           FontSize="20"
+                                                           Margin="0,1,0,0"
+                                                           FontSize="16"
+                                                            FontFamily="{StaticResource VoniqueBold}"
                                                            Visibility="{x:Bind Revealed, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Grid>
@@ -178,15 +180,15 @@
                 </ListView>
 
                 <ListView ItemsSource="{x:Bind Game.RowSum, Mode=OneWay}"
-                  Grid.Column="1"
-                  IsItemClickEnabled="False"
-                  SelectionMode="None"
-                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  ScrollViewer.HorizontalScrollMode="Disabled"
-                  ScrollViewer.VerticalScrollMode="Disabled"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  ScrollViewer.ZoomMode="Disabled">
+                          Grid.Column="1"
+                          IsItemClickEnabled="False"
+                          SelectionMode="None"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          ScrollViewer.ZoomMode="Disabled">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsStackPanel Orientation="Vertical"/>
@@ -195,21 +197,21 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="6">
-                                <TextBlock Text="{Binding}" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding}" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
                 <ListView ItemsSource="{x:Bind Game.RowZeros, Mode=OneWay}"
-                  Grid.Column="2"
-                  IsItemClickEnabled="False"
-                  SelectionMode="None"
-                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  ScrollViewer.HorizontalScrollMode="Disabled"
-                  ScrollViewer.VerticalScrollMode="Disabled"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  ScrollViewer.ZoomMode="Disabled">
+                          Grid.Column="2"
+                          IsItemClickEnabled="False"
+                          SelectionMode="None"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          ScrollViewer.ZoomMode="Disabled">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsStackPanel Orientation="Vertical"/>
@@ -218,22 +220,22 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="6">
-                                <TextBlock Text="{Binding}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
 
                 <ListView ItemsSource="{x:Bind Game.ColumnSum, Mode=OneWay}"
-                  Grid.Row="1"
-                  IsItemClickEnabled="False"
-                  SelectionMode="None"
-                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  ScrollViewer.HorizontalScrollMode="Disabled"
-                  ScrollViewer.VerticalScrollMode="Disabled"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  ScrollViewer.ZoomMode="Disabled">
+                          Grid.Row="1"
+                          IsItemClickEnabled="False"
+                          SelectionMode="None"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          ScrollViewer.ZoomMode="Disabled">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsStackPanel Orientation="Horizontal"/>
@@ -242,21 +244,21 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="6">
-                                <TextBlock Text="{Binding}" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding}" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
                 <ListView ItemsSource="{x:Bind Game.ColumnZeros, Mode=OneWay}"
-                  Grid.Row="2"
-                  IsItemClickEnabled="False"
-                  SelectionMode="None"
-                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                  ScrollViewer.HorizontalScrollMode="Disabled"
-                  ScrollViewer.VerticalScrollMode="Disabled"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                  ScrollViewer.ZoomMode="Disabled">
+                          Grid.Row="2"
+                          IsItemClickEnabled="False"
+                          SelectionMode="None"
+                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                          ScrollViewer.ZoomMode="Disabled">
                     <ListView.ItemsPanel>
                         <ItemsPanelTemplate>
                             <ItemsStackPanel Orientation="Horizontal"/>
@@ -265,7 +267,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="6">
-                                <TextBlock Text="{Binding}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -276,21 +278,21 @@
 
         <StackPanel Grid.Row="3">
             <Grid>
-                <StackPanel Orientation="Horizontal" Visibility="{x:Bind Game.NotesMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <ToggleButton Content="0" IsChecked="{x:Bind Game.Notes0, Mode=TwoWay}" />
-                    <ToggleButton Content="1" IsChecked="{x:Bind Game.Notes1, Mode=TwoWay}" />
-                    <ToggleButton Content="2" IsChecked="{x:Bind Game.Notes2, Mode=TwoWay}" />
-                    <ToggleButton Content="3" IsChecked="{x:Bind Game.Notes3, Mode=TwoWay}" />
+                <StackPanel Orientation="Horizontal" Visibility="{x:Bind Game.NotesMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="12,0">
+                    <ToggleButton Content="0" IsChecked="{x:Bind Game.Notes0, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" />
+                    <ToggleButton Content="1" IsChecked="{x:Bind Game.Notes1, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" />
+                    <ToggleButton Content="2" IsChecked="{x:Bind Game.Notes2, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" />
+                    <ToggleButton Content="3" IsChecked="{x:Bind Game.Notes3, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" />
                 </StackPanel>
-                <ToggleButton HorizontalAlignment="Right" Margin="12" Padding="12" IsChecked="{x:Bind Game.NotesMode, Mode=TwoWay}">Notes</ToggleButton>
+                <ToggleButton HorizontalAlignment="Right" Margin="12" Padding="12" IsChecked="{x:Bind Game.NotesMode, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}">Notes</ToggleButton>
             </Grid>
             <Grid BorderBrush="Black" BorderThickness="1" CornerRadius="6" Margin="12">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Score" FontFamily="{StaticResource Atari}" Margin="12"/>
-                <TextBlock Grid.Column="1" Text="{x:Bind Game.CurrentScore, Mode=OneWay}" FontFamily="{StaticResource Atari}" Margin="12"/>
+                <TextBlock Text="Score" FontFamily="{StaticResource VoniqueBold}" Margin="12"/>
+                <TextBlock Grid.Column="1" Text="{x:Bind Game.CurrentScore, Mode=OneWay}" FontFamily="{StaticResource VoniqueBold}" Margin="12"/>
             </Grid>
 
             <Grid BorderBrush="Black" BorderThickness="1" CornerRadius="6" Margin="12">
@@ -298,8 +300,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Total" FontFamily="{StaticResource Atari}" Margin="12"/>
-                <TextBlock Grid.Column="1" Text="{x:Bind Game.GameScore, Mode=OneWay}" FontFamily="{StaticResource Atari}" Margin="12"/>
+                <TextBlock Text="Total" FontFamily="{StaticResource VoniqueBold}" Margin="12"/>
+                <TextBlock Grid.Column="1" Text="{x:Bind Game.GameScore, Mode=OneWay}" FontFamily="{StaticResource VoniqueBold}" Margin="12"/>
             </Grid>
         </StackPanel>
     </Grid>
