@@ -24,6 +24,8 @@ namespace ZeroFlip.UWP
         public static readonly DependencyProperty GameProperty =
             DependencyProperty.Register("Game", typeof(Game), typeof(GamePage), new PropertyMetadata(0));
 
+
+
         public GamePage()
         {
             Game = new Game();
@@ -34,19 +36,20 @@ namespace ZeroFlip.UWP
 
         private async void Game_GameEnded(object sender, GameEndedEventArgs e)
         {
-                Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
-              {
-            try
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, async () =>
             {
+                try
+                {
 
-            MessageDialog md = new MessageDialog(e.Message, e.Message);
-            var result = await md.ShowAsync();
-            }
-            catch (Exception ex)
-            {
+                    MessageDialog md = new MessageDialog(e.Message, e.Message);
+                    var result = await md.ShowAsync();
 
-                throw;
-            }
+                    Game.NewGame(e.NextLevel);
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             });
         }
 
@@ -61,8 +64,8 @@ namespace ZeroFlip.UWP
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             //(e.ClickedItem as Lib.Tile).Revealed = true;
-            if (e.ClickedItem is Lib.Tile)
-                Game.TileClick((e.ClickedItem as Lib.Tile));
+            if (e.ClickedItem is Lib.Tile t && !t.Revealed)
+                Game.TileClick(t);
         }
     }
 }

@@ -84,7 +84,10 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Text="ZeroFlip" FontSize="20" FontFamily="{StaticResource Atari}" HorizontalAlignment="Center" Margin="12"/>
-        <TextBlock Text="Level 1" Grid.Row="1" FontSize="20" FontFamily="{StaticResource Atari}" Margin="12"/>
+        <TextBlock Grid.Row="1" FontSize="20" FontFamily="{StaticResource Atari}" Margin="12">
+            <Run Text="Level" />
+            <Run Text="{x:Bind Game.Level, Mode=OneWay}" />
+        </TextBlock>
 
         <Viewbox Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Stretch="Uniform" Margin="12">
             <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -287,6 +290,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Score" FontFamily="{StaticResource Atari}" Margin="12"/>
+                <TextBlock Grid.Column="1" Text="{x:Bind Game.CurrentScore, Mode=OneWay}" FontFamily="{StaticResource Atari}" Margin="12"/>
             </Grid>
 
             <Grid BorderBrush="Black" BorderThickness="1" CornerRadius="6" Margin="12">
@@ -295,6 +299,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Total" FontFamily="{StaticResource Atari}" Margin="12"/>
+                <TextBlock Grid.Column="1" Text="{x:Bind Game.GameScore, Mode=OneWay}" FontFamily="{StaticResource Atari}" Margin="12"/>
             </Grid>
         </StackPanel>
     </Grid>

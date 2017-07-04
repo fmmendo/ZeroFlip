@@ -11,7 +11,19 @@ namespace ZeroFlip.Lib
     {
         public int Value { get { return GetV(0); } set { Set(value); } }
 
-        public bool Revealed { get { return GetV(false); } set { Set(value); } }
+        public bool Revealed
+        {
+            get { return GetV(false); }
+            set
+            {
+                Set(value);
+
+                OnPropertyChanged(nameof(HintZero));
+                OnPropertyChanged(nameof(HintOne));
+                OnPropertyChanged(nameof(HintTwo));
+                OnPropertyChanged(nameof(HintThree));
+            }
+        }
 
         public bool HintZero { get { return Revealed ? false : GetV(false); } set { Set(value); } }
         public bool HintOne { get { return Revealed ? false : GetV(false); } set { Set(value); } }

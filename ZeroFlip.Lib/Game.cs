@@ -9,15 +9,15 @@ namespace ZeroFlip.Lib
     public class Game : ViewModelBase
     {
         public ZeroGrid Grid { get; private set; }
-        public int Level { get; private set; }
-        public int CurrentScore { get; private set; }
-        public int GameScore { get; private set; }
+        public int Level { get { return GetV(1); } set { Set(value); } }
+        public int CurrentScore { get { return GetV(0); } set { Set(value); } }
+        public int GameScore { get { return GetV(0); } set { Set(value); } }
 
         public bool? NotesMode { get { return GetV(false); } set { Set(value); } }
-        public bool? Notes0 { get { return GetV(false); } set { Set(value); } }
-        public bool? Notes1 { get { return GetV(false); } set { Set(value); } }
-        public bool? Notes2 { get { return GetV(false); } set { Set(value); } }
-        public bool? Notes3 { get { return GetV(false); } set { Set(value); } }
+        public bool? Notes0 { get { return GetV(false); } set { Set(value); if (value.Value) { Notes1 = Notes2 = Notes3 = false; } } }
+        public bool? Notes1 { get { return GetV(false); } set { Set(value); if (value.Value) { Notes0 = Notes2 = Notes3 = false; } } } 
+        public bool? Notes2 { get { return GetV(false); } set { Set(value); if (value.Value) { Notes0 = Notes1 = Notes3 = false; } } } 
+        public bool? Notes3 { get { return GetV(false); } set { Set(value); if (value.Value) { Notes0 = Notes1 = Notes2 = false; } } } 
 
         public BindableCollection<Tile[]> Rows { get { return Get<BindableCollection<Tile[]>>(); } set { Set(value); } }
         public BindableCollection<int> RowSum { get { return Get<BindableCollection<int>>(); } set { Set(value); } }
@@ -92,13 +92,14 @@ namespace ZeroFlip.Lib
             {
                 Grid.RevealBoard();
                 GameScore += CurrentScore;
-                gameWon = true;
+                gameWon = false;
                 GameEnded?.Invoke(this, new GameEndedEventArgs { Message = "Game Over", NextLevel = GetNextLevel() });
             }
             else if (CurrentScore == Grid.TotalPoints)
             {
                 Grid.RevealBoard();
-                gameWon = false;
+                GameScore += CurrentScore;
+                gameWon = true;
                 GameEnded?.Invoke(this, new GameEndedEventArgs { Message = "You Win", NextLevel = GetNextLevel() });
             }
         }
@@ -115,6 +116,7 @@ namespace ZeroFlip.Lib
             }
             else
             {
+                winningSpree = 0;
                 if (CurrentScore <= 1)
                     return 1;
 

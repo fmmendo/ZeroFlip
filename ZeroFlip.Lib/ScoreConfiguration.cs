@@ -31,7 +31,7 @@ namespace ZeroFlip.Lib
                 new ScoreConfiguration { Level = 4, Min=216, Max=324 },
                 new ScoreConfiguration { Level = 5, Min=384, Max=576 },
                 new ScoreConfiguration { Level = 6, Min=648, Max=972 },
-                new ScoreConfiguration { Level = 9, Min=1024, Max=1536 },
+                new ScoreConfiguration { Level = 7, Min=1024, Max=1536 },
                 new ScoreConfiguration { Level = 8, Min=1728, Max=2592 },
                 new ScoreConfiguration { Level = 9, Min=2916, Max=5184 },
                 new ScoreConfiguration { Level = 10, Min=5832, Max=11664 },
