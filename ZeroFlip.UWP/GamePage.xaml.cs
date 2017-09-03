@@ -73,5 +73,19 @@ namespace ZeroFlip.UWP
             if (e.ClickedItem is Lib.Tile t && !t.Revealed)
                 Game.TileClick(t);
         }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var newLevel = Game.GiveUp();
+
+            var message = Constants.GiveUpMessage;
+            if (newLevel < Game.Level)
+                message += "\n\n" + string.Format(Constants.LevelDownMessage, newLevel);
+
+            MessageDialog md = new MessageDialog(message, Constants.GiveUpHeader);
+            var result = await md.ShowAsync();
+
+            Game.NewGame(newLevel);
+        }
     }
 }

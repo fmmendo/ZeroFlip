@@ -29,6 +29,7 @@ namespace ZeroFlip.Lib
         private int winningSpree = 0;
         private int losingSpree = 0;
         private int multipliersRevealed = 0;
+        private int giveUpCounter = 0;
 
         public event EventHandler<GameEndedEventArgs> GameEnded;
 
@@ -37,12 +38,12 @@ namespace ZeroFlip.Lib
 
         }
 
-
         public void NewGame(int level = 1, int size = 5)
         {
             Level = level;
             CurrentScore = 0;
             multipliersRevealed = 0;
+            gameWon = false;
 
             Grid = new ZeroGrid(level, size);
 
@@ -84,6 +85,13 @@ namespace ZeroFlip.Lib
             }
         }
 
+        public int GiveUp()
+        {
+            GameScore += CurrentScore;
+
+            return GetNextLevel(true);
+        }
+
         private void UpdateScore(int value)
         {
             if (CurrentScore == 0)
@@ -110,20 +118,35 @@ namespace ZeroFlip.Lib
             }
         }
 
-        private int GetNextLevel()
+        private int GetNextLevel(bool gaveUp = false)
         {
             if (gameWon)
             {
                 losingSpree = 0;
+                giveUpCounter = 0;
                 winningSpree += 1;
                 if (winningSpree >= 7)
                     return 8;
 
                 return Level + 1;
             }
-            else
+
+            if (gaveUp)
+            {
+                giveUpCounter += 1;
+
+                if (giveUpCounter < 3)
+                    return Level;
+                if (giveUpCounter >= 3)
+                    return Math.Max(1, Level - 1);
+
+                return Level;
+            }
+            
+            if (!gameWon)
             {
                 winningSpree = 0;
+                giveUpCounter = 0;
                 losingSpree += 1;
                 //if (CurrentScore <= 1)
                 //    return 1;
@@ -137,10 +160,10 @@ namespace ZeroFlip.Lib
                 else if (multipliersRevealed == numberOfMultipliers - 1)
                     return Level;
                 // lost more than half the way through the grid, and have beem losing a lot, drop half the levels
-                else if (multipliersRevealed > numberOfMultipliers / 2 && losingSpree > 2)
+                else if (multipliersRevealed > numberOfMultipliers / 2 && losingSpree >= 3)
                     return Math.Max(1, Level / 2);
                 // lost more than half the way through the map, but haven't lost a lot, drop just one level
-                else if (multipliersRevealed > numberOfMultipliers / 2 && losingSpree <= 2)
+                else if (multipliersRevealed > numberOfMultipliers / 2 && losingSpree < 3)
                     return Level - 1;
                 // lost fairly early on, drop half the levels
                 else if (multipliersRevealed < numberOfMultipliers / 2)
@@ -149,6 +172,8 @@ namespace ZeroFlip.Lib
                 else
                     return Level;
             }
+
+            return Level;
         }
     }
 }
