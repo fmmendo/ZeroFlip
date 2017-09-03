@@ -40,8 +40,15 @@ namespace ZeroFlip.UWP
             {
                 try
                 {
+                    var message = string.Empty;
+                    if (e.NextLevel > Game.Level)
+                        message = string.Format(e.Message, string.Format(Constants.LevelUpMessage, e.NextLevel));
+                    else if (e.NextLevel < Game.Level)
+                        message = string.Format(e.Message, string.Format(Constants.LevelDownMessage, e.NextLevel));
+                    else
+                        message = string.Format(e.Message, string.Empty);
 
-                    MessageDialog md = new MessageDialog(e.Message, e.Message);
+                    MessageDialog md = new MessageDialog(message, e.Header);
                     var result = await md.ShowAsync();
 
                     Game.NewGame(e.NextLevel);
@@ -63,7 +70,6 @@ namespace ZeroFlip.UWP
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            //(e.ClickedItem as Lib.Tile).Revealed = true;
             if (e.ClickedItem is Lib.Tile t && !t.Revealed)
                 Game.TileClick(t);
         }

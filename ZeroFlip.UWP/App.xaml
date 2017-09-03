@@ -11,6 +11,15 @@
 
             <FontFamily x:Key="Vonique">/Assets/Vonique 64.ttf#Vonique 64</FontFamily>
             <FontFamily x:Key="VoniqueBold">/Assets/Vonique 64 Bold.ttf#Vonique 64</FontFamily>
+
+            <TransitionCollection x:Name="DefaultPageTransitions">
+                <NavigationThemeTransition>
+                    <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                        <DrillInNavigationTransitionInfo />
+                    </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                </NavigationThemeTransition>
+            </TransitionCollection>
+
         </ResourceDictionary>
 </Application.Resources>
 </Application>

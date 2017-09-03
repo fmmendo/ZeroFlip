@@ -148,5 +148,15 @@ namespace ZeroFlip.Lib
             for (int i = 0; i < numberOfCells; i++)
                 yield return i;
         }
+
+        public int GetNumberOfMultipliers()
+        {
+            int num = 0;
+            for (int i = 0; i < gridSize; i++)
+                for (int j = 0; j < gridSize; j++)
+                    if (grid[i, j].Value > 1)
+                        num++;
+            return num;
+        }
     }
 }

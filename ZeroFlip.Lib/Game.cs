@@ -27,6 +27,8 @@ namespace ZeroFlip.Lib
 
         private bool gameWon = false;
         private int winningSpree = 0;
+        private int losingSpree = 0;
+        private int multipliersRevealed = 0;
 
         public event EventHandler<GameEndedEventArgs> GameEnded;
 
@@ -40,7 +42,8 @@ namespace ZeroFlip.Lib
         {
             Level = level;
             CurrentScore = 0;
-            
+            multipliersRevealed = 0;
+
             Grid = new ZeroGrid(level, size);
 
             Rows = new BindableCollection<Tile[]>();
@@ -88,19 +91,22 @@ namespace ZeroFlip.Lib
 
             CurrentScore *= value;
 
+            if (value > 1)
+                multipliersRevealed++;
+
             if (value == 0)
             {
                 Grid.RevealBoard();
                 GameScore += CurrentScore;
                 gameWon = false;
-                GameEnded?.Invoke(this, new GameEndedEventArgs { Message = "Game Over", NextLevel = GetNextLevel() });
+                GameEnded?.Invoke(this, new GameEndedEventArgs { Header = Constants.LoseHeader, Message = Constants.LoseMessage, NextLevel = GetNextLevel() });
             }
             else if (CurrentScore == Grid.TotalPoints)
             {
                 Grid.RevealBoard();
                 GameScore += CurrentScore;
                 gameWon = true;
-                GameEnded?.Invoke(this, new GameEndedEventArgs { Message = "You Win", NextLevel = GetNextLevel() });
+                GameEnded?.Invoke(this, new GameEndedEventArgs { Header = Constants.WinHeader, Message = Constants.WinMessage, NextLevel = GetNextLevel() });
             }
         }
 
@@ -108,6 +114,7 @@ namespace ZeroFlip.Lib
         {
             if (gameWon)
             {
+                losingSpree = 0;
                 winningSpree += 1;
                 if (winningSpree >= 7)
                     return 8;
@@ -117,10 +124,30 @@ namespace ZeroFlip.Lib
             else
             {
                 winningSpree = 0;
-                if (CurrentScore <= 1)
-                    return 1;
+                losingSpree += 1;
+                //if (CurrentScore <= 1)
+                //    return 1;
 
-                return Math.Min(Level, Grid.GetNumberOfMultipliersFlipped());
+                var numberOfMultipliers = Grid.GetNumberOfMultipliers();
+
+                //lost on first move, drop all the way down
+                if (multipliersRevealed == 0)
+                    return 1;
+                // lost just before the end, stay in same level
+                else if (multipliersRevealed == numberOfMultipliers - 1)
+                    return Level;
+                // lost more than half the way through the grid, and have beem losing a lot, drop half the levels
+                else if (multipliersRevealed > numberOfMultipliers / 2 && losingSpree > 2)
+                    return Math.Max(1, Level / 2);
+                // lost more than half the way through the map, but haven't lost a lot, drop just one level
+                else if (multipliersRevealed > numberOfMultipliers / 2 && losingSpree <= 2)
+                    return Level - 1;
+                // lost fairly early on, drop half the levels
+                else if (multipliersRevealed < numberOfMultipliers / 2)
+                    return Math.Max(1, Level / 2);
+                // I don't know what happend, here have a repeat
+                else
+                    return Level;
             }
         }
     }

@@ -6,7 +6,9 @@
     xmlns:local="using:ZeroFlip.UWP"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    EnableTitleBarBackButton="True"
     xmlns:data="using:ZeroFlip.Lib"
+    Transitions="{StaticResource DefaultPageTransitions}"
     mc:Ignorable="d">
     <c:PageBase.Resources>
         <Style TargetType="ListViewItem" x:Key="ListViewItemStyle">
@@ -63,19 +65,39 @@
             </Setter>
         </Style>
     </c:PageBase.Resources>
+    <c:PageBase.Background>
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                <GradientStop Offset="0" Color="#c4c4c4"/>
-                <GradientStop Offset=".4" Color="#f7f7f7"/>
-                <GradientStop Offset=".6" Color="#f7f7f7"/>
-                <GradientStop Offset="1" Color="#c4c4c4"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+            <GradientStop Offset="0" Color="#cc757a87"/>
+            <GradientStop Offset=".4" Color="#ddd7d7d7"/>
+            <GradientStop Offset=".6" Color="#ddd7d7d7"/>
+            <GradientStop Offset="1" Color="#cc757a87"/>
+        </LinearGradientBrush>
+    </c:PageBase.Background>
+    <Grid MaxWidth="800">
+        <!--<VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="NarrowState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                </VisualState>
+                <VisualState x:Name="WideState">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="tbLevel.(Grid.Column)" Value="1" />
+                        <Setter Target="panel.(Grid.Column)" Value="1" />
+                        <Setter Target="panel.(Grid.Row)" Value="2" />
+                        <Setter Target="cdSide.Width" Value="*" />
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>-->
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -83,8 +105,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Text="ZeroFlip" FontSize="20" FontFamily="{StaticResource VoniqueBold}" HorizontalAlignment="Center" Margin="12"/>
-        <TextBlock Grid.Row="1" FontSize="20" FontFamily="{StaticResource VoniqueBold}" Margin="12">
+        <TextBlock Text="ZeroFlip" FontSize="36" FontFamily="{StaticResource VoniqueBold}" HorizontalAlignment="Center" Margin="12" CharacterSpacing="50" Grid.ColumnSpan="2"/>
+        <TextBlock Grid.Row="1" x:Name="tbLevel" FontSize="28" FontFamily="{StaticResource VoniqueBold}" HorizontalAlignment="Center" Margin="14,12">
             <Run Text="Level" />
             <Run Text="{x:Bind Game.Level, Mode=OneWay}" />
         </TextBlock>
@@ -164,8 +186,8 @@
                                                            x:Name="tbNumber"
                                                            Margin="0,1,0,0"
                                                            FontSize="16"
-                                                            FontFamily="{StaticResource VoniqueBold}"
-                                                           Visibility="{x:Bind Revealed, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                           FontFamily="{StaticResource VoniqueBold}"
+                                                           
                                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </Grid>
                                         </Border>
@@ -197,7 +219,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="6">
-                                <TextBlock Text="{Binding}" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
+                                <TextBlock Text="{Binding}" Foreground="#788AC3" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -220,7 +242,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="6">
-                                <TextBlock Text="{Binding}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
+                                <TextBlock Text="{Binding}" Foreground="#D59090" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -244,7 +266,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="6">
-                                <TextBlock Text="{Binding}" Foreground="Blue" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
+                                <TextBlock Text="{Binding}" Foreground="#788AC3" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -267,32 +289,36 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Border Padding="6">
-                                <TextBlock Text="{Binding}" Foreground="Red" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
+                                <TextBlock Text="{Binding}" Foreground="#D59090" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Vonique}"/>
                             </Border>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
             </Grid>
         </Viewbox>
 
-        <StackPanel Grid.Row="3">
-            <Grid>
-                <StackPanel Orientation="Horizontal" Visibility="{x:Bind Game.NotesMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="12,0">
-                    <ToggleButton Content="0" IsChecked="{x:Bind Game.Notes0, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" />
-                    <ToggleButton Content="1" IsChecked="{x:Bind Game.Notes1, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" />
-                    <ToggleButton Content="2" IsChecked="{x:Bind Game.Notes2, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" />
-                    <ToggleButton Content="3" IsChecked="{x:Bind Game.Notes3, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" />
+        <StackPanel x:Name="panel" Grid.Row="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="12">
+                <ToggleButton HorizontalAlignment="Right" Padding="12" IsChecked="{x:Bind Game.NotesMode, Mode=TwoWay}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontFamily="{StaticResource SymbolThemeFontFamily}" Text="&#xE70F;"/>
+                        <TextBlock FontFamily="{StaticResource VoniqueBold}" Text="NOTES" Margin="12,0,0,0"/>
+                    </StackPanel>
+                </ToggleButton>
+                <StackPanel Orientation="Horizontal" Visibility="{x:Bind Game.NotesMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ToggleButton Content="0" IsChecked="{x:Bind Game.Notes0, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" Width="42" />
+                    <ToggleButton Content="1" IsChecked="{x:Bind Game.Notes1, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" Width="42" />
+                    <ToggleButton Content="2" IsChecked="{x:Bind Game.Notes2, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" Width="42" />
+                    <ToggleButton Content="3" IsChecked="{x:Bind Game.Notes3, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}" Padding="12" Width="42" />
                 </StackPanel>
-                <ToggleButton HorizontalAlignment="Right" Margin="12" Padding="12" IsChecked="{x:Bind Game.NotesMode, Mode=TwoWay}" FontFamily="{StaticResource VoniqueBold}">Notes</ToggleButton>
-            </Grid>
+            </StackPanel>
             <Grid BorderBrush="Black" BorderThickness="1" CornerRadius="6" Margin="12">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Score" FontFamily="{StaticResource VoniqueBold}" Margin="12"/>
-                <TextBlock Grid.Column="1" Text="{x:Bind Game.CurrentScore, Mode=OneWay}" FontFamily="{StaticResource VoniqueBold}" Margin="12"/>
+                <TextBlock Text="SCORE" FontFamily="{StaticResource VoniqueBold}" Margin="12" FontSize="20"/>
+                <TextBlock Grid.Column="1" Text="{x:Bind Game.CurrentScore, Mode=OneWay}" FontFamily="{StaticResource VoniqueBold}" Margin="12" FontSize="20"/>
             </Grid>
 
             <Grid BorderBrush="Black" BorderThickness="1" CornerRadius="6" Margin="12">
@@ -300,8 +326,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Total" FontFamily="{StaticResource VoniqueBold}" Margin="12"/>
-                <TextBlock Grid.Column="1" Text="{x:Bind Game.GameScore, Mode=OneWay}" FontFamily="{StaticResource VoniqueBold}" Margin="12"/>
+                <TextBlock Text="TOTAL" FontFamily="{StaticResource VoniqueBold}" Margin="12" FontSize="20"/>
+                <TextBlock Grid.Column="1" Text="{x:Bind Game.GameScore, Mode=OneWay}" FontFamily="{StaticResource VoniqueBold}" Margin="12" FontSize="20"/>
             </Grid>
         </StackPanel>
     </Grid>

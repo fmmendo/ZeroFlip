@@ -107,6 +107,7 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameEndedEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
