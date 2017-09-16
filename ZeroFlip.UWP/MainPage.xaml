@@ -9,22 +9,23 @@
     xmlns:data="using:ZeroFlip.Lib"
     Transitions="{StaticResource DefaultPageTransitions}"
     x:Name="root"
+    Loaded="root_Loaded"
+    Unloaded="root_Unloaded"
     mc:Ignorable="d">
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
-                <GradientStop Offset="0" Color="#757a87"/>
-                <GradientStop Offset=".4" Color="#f7f7f7"/>
-                <GradientStop Offset=".6" Color="#f7f7f7"/>
-                <GradientStop Offset="1" Color="#757a87"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Grid Background="Transparent" SizeChanged="BackgroundGrid_SizeChanged">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" Grid.RowSpan="2" x:Name="BackgroundGrid" Background="Transparent"/>
 
-        <StackPanel Grid.Column="3" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="0,0,0,48">
-            <Button Content="NEW GAME" Click="Button_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Margin="6" Padding="12"/>
-            <Button Content="HOW TO PLAY" Click="HowToPlay_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Margin="6" Padding="12"/>
-            <Button Content="QUIT" Click="Exit_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Margin="6" Padding="12"/>
+        <StackPanel Grid.Row="1" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="0,0,0,48">
+            <Button Content="NEW GAME" Click="Button_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
+            <Button Content="HOW TO PLAY" Click="HowToPlay_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
+            <Button Content="HIGH SCORES" Click="HighScores_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
+            <Button Content="QUIT" Click="Exit_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
         </StackPanel>
     </Grid>
 </c:PageBase>

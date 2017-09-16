@@ -25,7 +25,7 @@ namespace ZeroFlip.UWP
             this.Suspending += OnSuspending;
 
 
-            Http.DefaultCache = SQLiteCache.CompressedInstance;
+            //Http.DefaultCache = SQLiteCache.CompressedInstance;
         }
 
         /// <summary>
