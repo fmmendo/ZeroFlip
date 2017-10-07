@@ -5,21 +5,22 @@ using Windows.UI;
 using Windows.UI.Composition;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace ZeroFlip.UWP
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : PageBase
+    public sealed partial class HowToPlayPage : PageBase
     {
         Compositor _compositor;
         SpriteVisual _hostSprite;
 
-        public MainPage()
+        public HowToPlayPage()
         {
             this.InitializeComponent();
 
@@ -35,37 +36,25 @@ namespace ZeroFlip.UWP
             titleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(typeof(GamePage), true);
-        }
-
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            App.Current.Exit();
-        }
-
-        private void HowToPlay_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(typeof(HowToPlayPage));
-        }
-
-        private void HighScores_Click(object sender, RoutedEventArgs e)
-        {
-            //NavigationService.Navigate(typeof(GamePage), true);
-        }
-
-        private void root_Loaded(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             if (DeviceInformation.Instance.IsPhone)
                 return;
 
-                _hostSprite = _compositor.CreateSpriteVisual();
+            _hostSprite = _compositor.CreateSpriteVisual();
             _hostSprite.Size = new Vector2((float)BackgroundGrid.ActualWidth, (float)BackgroundGrid.ActualHeight);
 
             ElementCompositionPreview.SetElementChildVisual(BackgroundGrid, _hostSprite);
 
             UpdateEffect();
+        }
+
+        private void BackgroundGrid_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (!DeviceInformation.Instance.IsPhone && _hostSprite != null)
+            {
+                _hostSprite.Size = e.NewSize.ToVector2();
+            }
         }
 
         private void UpdateEffect()
@@ -74,18 +63,6 @@ namespace ZeroFlip.UWP
                 return;
 
             _hostSprite.Brush = _compositor.CreateHostBackdropBrush();
-        }
-
-        private void root_Unloaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void BackgroundGrid_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (_hostSprite != null)
-            {
-                _hostSprite.Size = e.NewSize.ToVector2();
-            }
         }
     }
 }

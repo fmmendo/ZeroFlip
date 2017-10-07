@@ -91,6 +91,9 @@
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
     <Content Include="Assets\atarifull.ttf" />
+    <Content Include="Assets\grid.PNG" />
+    <Content Include="Assets\grid_blur.png" />
+    <Content Include="Assets\grid_hints_blur.png" />
     <Content Include="Assets\Vonique 64 Bold Italic.ttf" />
     <Content Include="Assets\Vonique 64 Bold.ttf" />
     <Content Include="Assets\Vonique 64 Italic.ttf" />
@@ -102,6 +105,9 @@
     </Compile>
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HowToPlayPage.xaml.cs">
+      <DependentUpon>HowToPlayPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -131,6 +137,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="GamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HowToPlayPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

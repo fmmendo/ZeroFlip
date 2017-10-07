@@ -163,7 +163,7 @@
                                                            Margin="0,1,0,0"
                                                            FontSize="16"
                                                            FontFamily="{StaticResource VoniqueBold}"
-                                                           Visibility="{x:Bind Revealed, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                           
                                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Border>
