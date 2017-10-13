@@ -13,5 +13,7 @@
 
         public static readonly string LevelUpMessage = "You've moved up to level {0}! ";
         public static readonly string LevelDownMessage = "You've dropped down to level {0}. ";
+
+        public static readonly string SETTINGS_HIGH_SCORE = "ZEROFLIP_SETTINGS_HIGH_SCORE";
     }
 }

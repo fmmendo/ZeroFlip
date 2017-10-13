@@ -1,5 +1,6 @@
 ﻿using Mendo.UWP.Common;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Numerics;
 using Windows.ApplicationModel.Core;
@@ -10,7 +11,9 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
+using Windows.UI.Xaml.Navigation;
 using ZeroFlip.Lib;
+using Mendo.UWP.Serialization;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -32,8 +35,6 @@ namespace ZeroFlip.UWP
         // Using a DependencyProperty as the backing store for Game.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty GameProperty =
             DependencyProperty.Register("Game", typeof(Game), typeof(GamePage), new PropertyMetadata(0));
-
-
 
         public GamePage()
         {
@@ -64,6 +65,34 @@ namespace ZeroFlip.UWP
             md.ShowAsync();
 
             return false;
+        }
+
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            TrySaveHighScoreAsync(Game.GameScore);
+
+            base.OnNavigatedFrom(e);
+        }
+
+        private void TrySaveHighScoreAsync(int gameScore)
+        {
+            HighScores scores;
+
+            var json = Settings.Get<string>(Constants.SETTINGS_HIGH_SCORE, SettingsLocation.Roaming);
+            if (json == null && json is string s)
+            {
+                scores = Json.Instance.Deserialize<HighScores>(json);
+                if (scores.Table == null)
+                    scores.Table = new List<HighScoreItem>();
+            }
+            else
+                scores = new HighScores() { Table = new List<HighScoreItem>() };
+
+            scores.Table.Add(new HighScoreItem { Score = gameScore, Date = DateTime.Today });
+            scores.Table = scores.Table.OrderBy(i => i.Score).Take(10).ToList();
+
+            Settings.Set(Constants.SETTINGS_HIGH_SCORE, Json.Instance.Serialize(scores), SettingsLocation.Roaming, true);
         }
 
         private void UpdateEffect()
