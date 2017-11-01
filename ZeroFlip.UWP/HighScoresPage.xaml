@@ -1,0 +1,32 @@
+﻿<c:PageBase
+    x:Class="ZeroFlip.UWP.HighScoresPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:c="using:Mendo.UWP.Common"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ZeroFlip.UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    EnableTitleBarBackButton="True"
+    mc:Ignorable="d">
+
+    <StackPanel  Background="{StaticResource SystemControlChromeHighAcrylicWindowMediumBrush}" Orientation="Vertical" Padding="0,32,0,0">
+        <TextBlock Text="High Scores" FontSize="36" FontFamily="{StaticResource VoniqueBold}" HorizontalAlignment="Center" Margin="12" CharacterSpacing="50" Grid.ColumnSpan="2"/>
+        <ListView ItemsSource="{x:Bind Scores.Table, Mode=OneWay}"
+                  HorizontalAlignment="Center"
+                  SelectionMode="None"
+                  IsItemClickEnabled="False">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Score}" Margin="12" FontSize="20" VerticalAlignment="Center" />
+                        <TextBlock Grid.Column="2" Text="{Binding FormattedDate}" VerticalAlignment="Center" Margin="12" FontSize="16" Foreground="#1d1d1d" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+</c:PageBase>

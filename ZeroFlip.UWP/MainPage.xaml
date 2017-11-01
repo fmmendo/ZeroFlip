@@ -7,25 +7,29 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:ZeroFlip.Lib"
+    EnableTitleBarBackButton="True"
     Transitions="{StaticResource DefaultPageTransitions}"
     x:Name="root"
-    Loaded="root_Loaded"
-    Unloaded="root_Unloaded"
     mc:Ignorable="d">
 
-    <Grid Background="Transparent" SizeChanged="BackgroundGrid_SizeChanged">
+    <Grid Background="{StaticResource SystemControlChromeHighAcrylicWindowMediumBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
-        <Grid Grid.Row="0" Grid.RowSpan="2" x:Name="BackgroundGrid" Background="Transparent"/>
+
+
+        <Image Source="Assets\mainmenugrid.png" Margin="12" />
+        <Border HorizontalAlignment="Stretch" VerticalAlignment="Center" Background="#dae1e1e1}">
+        <TextBlock Text="ZERO FLIP" HorizontalAlignment="Center" FontFamily="{StaticResource VoniqueBold}" FontSize="72" Margin="0,24,0,0"/>
+        </Border>
+        <!--<Grid Grid.Row="0" Grid.RowSpan="2" x:Name="BackgroundGrid" Background="Transparent"/>-->
 
         <StackPanel Grid.Row="1" Background="Transparent" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Bottom" Padding="0,0,0,48">
-            <Button Content="NEW GAME" Click="Button_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
-            <Button Content="HOW TO PLAY" Click="HowToPlay_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
-            <Button Content="HIGH SCORES" Click="HighScores_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
-            <Button Content="QUIT" Click="Exit_Click" HorizontalAlignment="Stretch" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
+            <Button Content="NEW GAME" Click="Button_Click" HorizontalAlignment="Stretch" Style="{StaticResource ButtonRevealStyle}" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
+            <Button Content="HOW TO PLAY" Click="HowToPlay_Click" HorizontalAlignment="Stretch" Style="{StaticResource ButtonRevealStyle}" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
+            <Button Content="HIGH SCORES" Click="HighScores_Click" HorizontalAlignment="Stretch" Style="{StaticResource ButtonRevealStyle}" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
+            <Button Content="QUIT" Click="Exit_Click" HorizontalAlignment="Stretch" Style="{StaticResource ButtonRevealStyle}" FontFamily="{StaticResource VoniqueBold}" Background="#AAC1C1C1" Margin="6" Padding="12"/>
         </StackPanel>
     </Grid>
 </c:PageBase>

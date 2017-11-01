@@ -17,17 +17,9 @@ namespace ZeroFlip.UWP
     /// </summary>
     public sealed partial class MainPage : PageBase
     {
-        Compositor _compositor;
-        SpriteVisual _hostSprite;
-
         public MainPage()
         {
             this.InitializeComponent();
-
-            _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
-
-            if (DeviceInformation.Instance.IsPhone)
-                BackgroundGrid.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Colors.LightGray);
 
             // Extend the app into the titlebar so that we can apply acrylic
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
@@ -53,40 +45,7 @@ namespace ZeroFlip.UWP
 
         private void HighScores_Click(object sender, RoutedEventArgs e)
         {
-            //NavigationService.Navigate(typeof(GamePage), true);
-        }
-
-        private void root_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (DeviceInformation.Instance.IsPhone)
-                return;
-
-                _hostSprite = _compositor.CreateSpriteVisual();
-            _hostSprite.Size = new Vector2((float)BackgroundGrid.ActualWidth, (float)BackgroundGrid.ActualHeight);
-
-            ElementCompositionPreview.SetElementChildVisual(BackgroundGrid, _hostSprite);
-
-            UpdateEffect();
-        }
-
-        private void UpdateEffect()
-        {
-            if (DeviceInformation.Instance.IsPhone)
-                return;
-
-            _hostSprite.Brush = _compositor.CreateHostBackdropBrush();
-        }
-
-        private void root_Unloaded(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void BackgroundGrid_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (_hostSprite != null)
-            {
-                _hostSprite.Size = e.NewSize.ToVector2();
-            }
+            NavigationService.Navigate(typeof(HighScoresPage), true);
         }
     }
 }

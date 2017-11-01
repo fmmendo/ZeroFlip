@@ -7,27 +7,26 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     EnableTitleBarBackButton="True"
-    Loaded="Page_Loaded"
     mc:Ignorable="d">
 
-    <Grid Background="Transparent" SizeChanged="BackgroundGrid_SizeChanged">
-
-        <Grid x:Name="BackgroundGrid" Background="Transparent"/>
+    <Grid Background="{StaticResource SystemControlChromeHighAcrylicWindowMediumBrush}">
 
         <ScrollViewer >
             <StackPanel Padding="12,64,12,64" Orientation="Vertical" MaxWidth="640">
-                <StackPanel BorderBrush="#666666" Background="#AAC1C1C1" BorderThickness="2" Padding="12" Margin="0,12">
+                <TextBlock Text="HOW TO PLAY" FontSize="36" FontFamily="{StaticResource VoniqueBold}" HorizontalAlignment="Center" Margin="12" CharacterSpacing="50"/>
+                
+                <StackPanel BorderBrush="#666666" Background="{StaticResource SystemControlAcrylicWindowBrush}" BorderThickness="2" Padding="12" Margin="0,12">
                     <TextBlock Text="The game grid is populated with numbers ranging from 0 to 3."  FontSize="20" TextWrapping="WrapWholeWords" Margin="0,12"/>
                     <TextBlock Text="These numbers will be used as multipliers to calculate your final score."  FontSize="20" TextWrapping="WrapWholeWords" Margin="0,12"/>
                 </StackPanel>
                 <Image Source="Assets\grid_blur.PNG" Margin="36,12,36,0" MaxWidth="300" />
-                <StackPanel BorderBrush="#666666" Background="#AAC1C1C1" BorderThickness="2" Padding="12" Margin="0,12">
+                <StackPanel BorderBrush="#666666" Background="{StaticResource SystemControlAcrylicWindowBrush}" BorderThickness="2" Padding="12" Margin="0,12">
                     <TextBlock Text="2s and 3s will double and triple your score, while 1s have no effect."  FontSize="20" TextWrapping="WrapWholeWords" Margin="0,12"/>
                     <TextBlock Text="You win the game when you reach the maximum score, and lose if your reveal a 0."  FontSize="20" TextWrapping="WrapWholeWords" Margin="0,12"/>
                     <TextBlock Text="To help you in your game, the board provides you with a few hints."  FontSize="20" TextWrapping="WrapWholeWords" Margin="0,12"/>
                 </StackPanel>
                 <Image Source="Assets\grid_hints_blur.PNG" Margin="36,12,36,0" MaxWidth="300"/>
-                <StackPanel BorderBrush="#666666" Background="#AAC1C1C1" BorderThickness="2" Padding="12" Margin="0,12">
+                <StackPanel BorderBrush="#666666" Background="{StaticResource SystemControlAcrylicWindowBrush}" BorderThickness="2" Padding="12" Margin="0,12">
                     <TextBlock Text="The blue number indicates the sum of all the tiles in that row or column."  FontSize="20" TextWrapping="WrapWholeWords" Margin="0,12"/>
                     <TextBlock Text="The red number indicates the number of Zeros."  FontSize="20" TextWrapping="WrapWholeWords" Margin="0,12"/>
                     <!--<TextBlock Text="For instance, this row has no zeros, so you can go ahead an reveal every tile!"  FontSize="20" TextWrapping="WrapWholeWords" Margin="0,12"/>-->

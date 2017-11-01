@@ -15,5 +15,7 @@ namespace ZeroFlip.Lib
     {
         public int Score { get; set; }
         public DateTime Date { get; set; }
+
+        public string FormattedDate { get { return Date.ToString("D"); } }
     }
 }

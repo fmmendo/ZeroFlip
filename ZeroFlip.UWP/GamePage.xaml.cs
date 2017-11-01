@@ -24,9 +24,6 @@ namespace ZeroFlip.UWP
     /// </summary>
     public sealed partial class GamePage : PageBase
     {
-        Compositor _compositor;
-        SpriteVisual _hostSprite;
-
         public Game Game
         {
             get { return (Game)GetValue(GameProperty); }
@@ -42,11 +39,6 @@ namespace ZeroFlip.UWP
             Game.GameEnded += Game_GameEnded;
 
             this.InitializeComponent();
-
-            if (DeviceInformation.Instance.IsPhone)
-                BackgroundGrid.Background = new Windows.UI.Xaml.Media.SolidColorBrush(Colors.LightGray);
-
-            _compositor = ElementCompositionPreview.GetElementVisual(this).Compositor;
 
             // Extend the app into the titlebar so that we can apply acrylic
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
@@ -80,7 +72,7 @@ namespace ZeroFlip.UWP
             HighScores scores;
 
             var json = Settings.Get<string>(Constants.SETTINGS_HIGH_SCORE, SettingsLocation.Roaming);
-            if (json == null && json is string s)
+            if (json != null && json is string s)
             {
                 scores = Json.Instance.Deserialize<HighScores>(json);
                 if (scores.Table == null)
@@ -93,22 +85,6 @@ namespace ZeroFlip.UWP
             scores.Table = scores.Table.OrderBy(i => i.Score).Take(10).ToList();
 
             Settings.Set(Constants.SETTINGS_HIGH_SCORE, Json.Instance.Serialize(scores), SettingsLocation.Roaming, true);
-        }
-
-        private void UpdateEffect()
-        {
-            if (DeviceInformation.Instance.IsPhone)
-                return;
-
-            _hostSprite.Brush = _compositor.CreateHostBackdropBrush();
-        }
-
-        private void BackgroundGrid_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (!DeviceInformation.Instance.IsPhone && _hostSprite != null)
-            {
-                _hostSprite.Size = e.NewSize.ToVector2();
-            }
         }
 
         private async void Game_GameEnded(object sender, GameEndedEventArgs e)
@@ -163,19 +139,6 @@ namespace ZeroFlip.UWP
             var result = await md.ShowAsync();
 
             Game.NewGame(newLevel);
-        }
-
-        private void PageBase_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (DeviceInformation.Instance.IsPhone)
-                return;
-
-            _hostSprite = _compositor.CreateSpriteVisual();
-            _hostSprite.Size = new Vector2((float)BackgroundGrid.ActualWidth, (float)BackgroundGrid.ActualHeight);
-
-            ElementCompositionPreview.SetElementChildVisual(BackgroundGrid, _hostSprite);
-
-            UpdateEffect();
         }
     }
 }

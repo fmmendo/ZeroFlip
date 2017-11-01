@@ -8,7 +8,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     EnableTitleBarBackButton="True"
     xmlns:data="using:ZeroFlip.Lib"
-    Loaded="PageBase_Loaded"
     Transitions="{StaticResource DefaultPageTransitions}"
     mc:Ignorable="d">
     <c:PageBase.Resources>
@@ -30,9 +29,12 @@
                         <ListViewItemPresenter x:Name="ContentPresenter"
                                           ContentTransitions="{TemplateBinding ContentTransitions}"
                                           ContentTemplate="{TemplateBinding ContentTemplate}"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
                                           Content="{TemplateBinding Content}"
+                                          RevealBackground="{ThemeResource ListViewItemRevealBackground}"
+                                          RevealBorderThickness="{ThemeResource ListViewItemRevealBorderThemeThickness}"
+                                          RevealBorderBrush="{ThemeResource ListViewItemRevealBorderBrush}"
                                           Foreground="{TemplateBinding Foreground}"/>
                     </ControlTemplate>
                 </Setter.Value>
@@ -67,10 +69,7 @@
         </Style>
     </c:PageBase.Resources>
 
-    <Grid Background="Transparent" SizeChanged="BackgroundGrid_SizeChanged">
-
-        <Grid x:Name="BackgroundGrid" Background="Transparent"/>
-
+    <Grid Background="{StaticResource SystemControlChromeHighAcrylicWindowMediumBrush}">
         <Grid MaxWidth="800">
 
             <Grid.ColumnDefinitions>
@@ -82,10 +81,10 @@
                 <RowDefinition Height="*" MinHeight="220"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="ZeroFlip" FontSize="36" FontFamily="{StaticResource VoniqueBold}" HorizontalAlignment="Center" Margin="12" CharacterSpacing="50" Grid.ColumnSpan="2"/>
-            <TextBlock Grid.Row="1" x:Name="tbLevel" FontSize="28" FontFamily="{StaticResource VoniqueBold}" HorizontalAlignment="Center" Margin="14,12">
-            <Run Text="Level" />
-            <Run Text="{x:Bind Game.Level, Mode=OneWay}" />
+            <TextBlock Text="ZeroFlip" FontSize="36" FontFamily="{StaticResource VoniqueBold}" HorizontalAlignment="Center" Margin="12,48,12,6" CharacterSpacing="50" Grid.ColumnSpan="2"/>
+            <TextBlock Grid.Row="1" x:Name="tbLevel" FontSize="28" FontFamily="{StaticResource VoniqueBold}" HorizontalAlignment="Center" Margin="14,0,14,12">
+                <Run Text="Level" />
+                <Run Text="{x:Bind Game.Level, Mode=OneWay}" />
             </TextBlock>
 
             <Viewbox Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" Stretch="Uniform" Margin="12" MinHeight="200">
@@ -120,20 +119,19 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ListView ItemsSource="{Binding}"
-                              IsItemClickEnabled="True"
-                              ItemClick="ListView_ItemClick"
-                              SelectionMode="None"
-                              x:Name="lstNumbers"
-                              FontSize="20"
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch"
-                              ItemContainerStyle="{StaticResource ListViewItemStyle}"
-                              ScrollViewer.HorizontalScrollMode="Disabled"
-                              ScrollViewer.VerticalScrollMode="Disabled"
-                              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                              ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                              ScrollViewer.ZoomMode="Disabled">
-
+                                          IsItemClickEnabled="True"
+                                          ItemClick="ListView_ItemClick"
+                                          SelectionMode="None"
+                                          x:Name="lstNumbers"
+                                          FontSize="20"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                                          ScrollViewer.HorizontalScrollMode="Disabled"
+                                          ScrollViewer.VerticalScrollMode="Disabled"
+                                          ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                                          ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                          ScrollViewer.ZoomMode="Disabled">
                                     <ListView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <ItemsStackPanel Orientation="Horizontal"/>
@@ -163,7 +161,7 @@
                                                            Margin="0,1,0,0"
                                                            FontSize="16"
                                                            FontFamily="{StaticResource VoniqueBold}"
-                                                           
+                                                           Visibility="{x:Bind Revealed, Mode=OneWay}"
                                                            HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Grid>
                                             </Border>
@@ -280,19 +278,19 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                    <ToggleButton HorizontalAlignment="Left" Background="#AAC1C1C1" Padding="12" IsChecked="{x:Bind Game.NotesMode, Mode=TwoWay}">
+                    <ToggleButton HorizontalAlignment="Left" Background="#AAC1C1C1" Padding="12" IsChecked="{x:Bind Game.NotesMode, Mode=TwoWay}" Style="{StaticResource ToggleButtonRevealStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock FontFamily="{StaticResource SymbolThemeFontFamily}" Text="&#xE70F;"/>
                             <TextBlock FontFamily="{StaticResource VoniqueBold}" Text="NOTES" Margin="12,0,0,0"/>
                         </StackPanel>
                     </ToggleButton>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Column="1" Visibility="{x:Bind Game.NotesMode, Mode=OneWay, Converter={StaticResource BooleanToVisibilityConverter}}">
-                        <ToggleButton Content="0" IsChecked="{x:Bind Game.Notes0, Mode=TwoWay}" Background="#AAC1C1C1" FontFamily="{StaticResource VoniqueBold}" Padding="12" Width="42" />
-                        <ToggleButton Content="1" IsChecked="{x:Bind Game.Notes1, Mode=TwoWay}" Background="#AAC1C1C1" FontFamily="{StaticResource VoniqueBold}" Padding="12" Width="42" />
-                        <ToggleButton Content="2" IsChecked="{x:Bind Game.Notes2, Mode=TwoWay}" Background="#AAC1C1C1" FontFamily="{StaticResource VoniqueBold}" Padding="12" Width="42" />
-                        <ToggleButton Content="3" IsChecked="{x:Bind Game.Notes3, Mode=TwoWay}" Background="#AAC1C1C1" FontFamily="{StaticResource VoniqueBold}" Padding="12" Width="42" />
+                        <ToggleButton Content="0" IsChecked="{x:Bind Game.Notes0, Mode=TwoWay}" Background="#AAC1C1C1" FontFamily="{StaticResource VoniqueBold}" Style="{StaticResource ToggleButtonRevealStyle}" Padding="12" Width="42" />
+                        <ToggleButton Content="1" IsChecked="{x:Bind Game.Notes1, Mode=TwoWay}" Background="#AAC1C1C1" FontFamily="{StaticResource VoniqueBold}" Style="{StaticResource ToggleButtonRevealStyle}" Padding="12" Width="42" />
+                        <ToggleButton Content="2" IsChecked="{x:Bind Game.Notes2, Mode=TwoWay}" Background="#AAC1C1C1" FontFamily="{StaticResource VoniqueBold}" Style="{StaticResource ToggleButtonRevealStyle}" Padding="12" Width="42" />
+                        <ToggleButton Content="3" IsChecked="{x:Bind Game.Notes3, Mode=TwoWay}" Background="#AAC1C1C1" FontFamily="{StaticResource VoniqueBold}" Style="{StaticResource ToggleButtonRevealStyle}" Padding="12" Width="42" />
                     </StackPanel>
-                    <Button HorizontalAlignment="Right" Padding="12" Grid.Column="2" Background="#AAC1C1C1" Click="Button_Click">
+                    <Button HorizontalAlignment="Right" Padding="12" Grid.Column="2" Background="#AAC1C1C1" Click="Button_Click" Style="{StaticResource ButtonRevealStyle}">
                         <TextBlock FontFamily="{StaticResource VoniqueBold}" Text="GIVE UP"/>
                     </Button>
                 </Grid>
